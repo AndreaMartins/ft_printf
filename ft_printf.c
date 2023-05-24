@@ -6,16 +6,31 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/24 15:58:38 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:19:26 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int ft_check_format (char c, va_list args)
+int ft_check_format (char format, va_list args)
 {
+	int cc_printed;
 
+	cc_printed = 0;
+	if (format == 'c')
+	else if (format == 's')
+	else if (format == 'p')
+	else if (format == 'd' || format == 'i')
+	else if (format == 'u')
+	else if (format =='x' || 'X')
+	else if (format == '%')
+	{
+		cc_printed = ft_print_char_fd('%', 1);
+	}
+	else
+		return(-1);
+	return (cc_printed);
 }
 
 int ite_printed (const char *s, va_list args, int c_printed)
