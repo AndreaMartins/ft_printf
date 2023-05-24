@@ -6,12 +6,48 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/23 20:03:09 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:58:38 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
+
+int ft_check_format (char c, va_list args)
+{
+
+}
+
+int ite_printed (const char *s, va_list args, int c_printed)
+{
+	int i;
+	int aux;
+	
+	i = 0;
+	check = 0;
+
+	while (s[i] != '/0')
+	{
+		if(s[i] = '%')
+		{
+			check = ft_check_format(s[i+1], args);
+			if (check == -1)
+				return(-1);
+			//not sure about the c_printed
+			c_printed += check;
+			i++;
+		}
+		else
+		{
+			if(ft_print_char_fd(s[i], 1) == -1)
+				return(-1);
+			c_printed++;
+		}
+		i++;
+	}
+	return(c_printed);
+}
+
 
 int	ft_printf(const char *s, ...)
 {
@@ -20,7 +56,7 @@ int	ft_printf(const char *s, ...)
 
 	c_printed = 0;
 	va_start(args, s);
-	c_printed = parse_printed(s, args, c_printed);
+	c_printed = ite_printed(s, args, c_printed);
 	va_end(args);
 	return (c_printed);
 }
