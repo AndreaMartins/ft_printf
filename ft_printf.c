@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/24 18:50:49 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:38:21 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_printf(const char *s, ...)
 	return (c_printed);
 }
 
-/*
+
 #include <stdio.h>
 int	main(void)
 {
@@ -102,4 +102,4 @@ int	main(void)
 	printf("      %i", dfs);
 	return (0);
 
-}*/
+}
