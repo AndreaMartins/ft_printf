@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/24 16:19:26 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:50:49 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ int ft_check_format (char format, va_list args)
 
 	cc_printed = 0;
 	if (format == 'c')
+		cc_printed = ft_print_char_fd(va_args(args,int),1);
 	else if (format == 's')
+		cc_printed = ft_print_string(va_args(args, char*));
 	else if (format == 'p')
+		cc_print = ft_print_ptr(va_args(args, void*));
 	else if (format == 'd' || format == 'i')
+		cc_print = ft_print_decimal(va_args(args, int));
 	else if (format == 'u')
+		cc_print =ft_print_uninteger(va_args(args, unsigned int));
 	else if (format =='x' || 'X')
+		cc_print = ft_print_hex(va_args(args, char*),format,0);
 	else if (format == '%')
 	{
 		cc_printed = ft_print_char_fd('%', 1);
