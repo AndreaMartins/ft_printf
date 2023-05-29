@@ -6,14 +6,14 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:28:56 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/25 17:29:49 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:51:08 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int ft_print_uinteger(unsigned int n)
+int ft_print_uninteger(unsigned int n)
 {
 	char c;
 	size_t n_cpy;

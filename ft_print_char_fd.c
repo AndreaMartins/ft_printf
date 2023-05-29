@@ -6,13 +6,13 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:01:03 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/24 16:08:34 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:05:02 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_print_char_fd(int c, int d)
+int	ft_print_char_fd(int c, int fd)
 {
 	if (write(fd, &c, 1) != 1)
 		return (-1);

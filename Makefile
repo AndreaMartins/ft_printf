@@ -6,7 +6,7 @@
 #    By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 17:49:27 by andmart2          #+#    #+#              #
-#    Updated: 2023/05/23 19:15:26 by andmart2         ###   ########.fr        #
+#    Updated: 2023/05/29 18:19:20 by andmart2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,23 +15,28 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 AR = ar rc
 RM = rm -f
-SRC_PATH = .
-LIBFT_PATH = ./libft
+HEADER = ft_printf.h
+HEADER_LIBFT = libft/libft.h
 
-SRC = ft_printf.c \
+SRCS = ft_printf.c \
+   		ft_print_uninteger.c \
+		ft_print_string.c \
+		ft_print_ptr.c \
+		ft_print_hex.c \
+		ft_print_decimal.c \
+		ft_print_char_fd.c \
 
-SRC += $(addprefix $(LIBFT_PATH)/, 
-		ft_atoi.c \
-		)
-
-OBJS := $(SRCS: .c = .0)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
-		$(AR) $(NAME)$(OBJS)
+$(NAME): $(OBJS)
+		make -C libft --no-print-directory
+		cp libft/libft.a $(NAME)
+		make -C libft fclean
+		$(AR) $(NAME) $(OBJS)
 
-%.o: %.c
+%.o: %.c $(HEADER) $(HEADER_LIBFT)
 		$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
