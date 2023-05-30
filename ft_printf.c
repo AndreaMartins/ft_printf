@@ -6,101 +6,105 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/29 20:10:29 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:22:58 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_printf.h"
-#include "libft/libft.h"
+#include <stdio.h>
 
-int ft_check_format (char format, va_list args)
+static void	check_type(char c, va_list *args, int *len)
 {
-	int cc_printed;
-
-	cc_printed = 0;
-	if (format == 'c')
-		cc_printed = ft_print_char_fd(va_arg(args,int),1);
-	else if (format == 's')
-		cc_printed = ft_print_string(va_arg(args, char *));
-	else if (format == 'p')
-		cc_printed = ft_print_ptr(va_arg(args, void *));
-	else if (format == 'd' || format == 'i')
-		cc_printed = ft_print_decimal(va_arg(args, int));
-	else if (format == 'u')
-		cc_printed =ft_print_uninteger(va_arg(args, unsigned int));
-	else if (format =='x' || format == 'X')
-		cc_printed = ft_print_hex(va_arg(args, unsigned int),format,0);
-	else if (format == '%')
-	{
-		cc_printed = ft_print_char_fd('%', 1);
-	}
-	else
-		return(-1);
-	return (cc_printed);
+	if (c == 'c')
+		ft_print_char_l(va_arg(*args, int), len);
+	if (c == 's')
+		ft_print_string_l(va_arg(*args, *char), len);
+	if ( c == '%')
+		ft_print_char_l('%', len);
 }
 
-int ite_printed (const char *s, va_list args, int c_printed)
+int	ft_printf (const char *str, ...)
 {
-	int i;
-	int check;
-	
-	i = 0;
-	check = 0;
+	va_list	args;
+	size_t	i;
+	int		len;
 
-	while (s[i])
+	i = 0;
+	len = 0;
+	va_start(args, str);
+	while(str[i] && len != -1 )
 	{
-		if(s[i] == '%')
+		if (str[i] == '%')
 		{
-			check = ft_check_format(s[i+1], args);
-			if (check == -1)
-				return(-1);
-			//not sure about the c_printed
-			c_printed += check;
+			i++;
+			check_type(str[i], &args, &len);
 			i++;
 		}
 		else
 		{
-			if(ft_print_char_fd(s[i], 1) == -1)
-				return(-1);
-			c_printed++;
+			ft_print_char_l(str[i], &len);
+			i++;
 		}
-		i++;
+		if (len == -1)
+			return(-1);
 	}
-	return(c_printed);
-}
-
-
-int	ft_printf(const char *s, ...)
-{
-	va_list	args;
-	int		c_printed;
-
-	c_printed = 0;
-	va_start(args, s);
-	c_printed = ite_printed(s, args, c_printed);
 	va_end(args);
-	return (c_printed);
+	return(len);
 }
 
-/*
+/*int	main()
+{	
+	ft_printf("%c\n",'m');
+	printf("%c",'m');
+}
+*/
+/* 	
+Test for 
+c (char)
+s (string)
+i (integer)
+d (decimal)
+u (unsigned)
+X (Hexadecimal CAPS)
+x (hexadecimal lowerc)
+p (pointer)
+% (% sign)
+
 #include <stdio.h>
-int	main(void)
+
+int main()
 {
-//	char a = 'a';
-//	char *b = "muchas gracias";
-//	unsigned int c = 4294967295;
-	int dfs;
-//	void *s = "holaquetal";
-//	unsigned int x = 636321;
-
-//	ft_print_decimal(a);
-//	printf("\n\n\n\n\n");
-	dfs = ft_printf("%d", 0);
-	ft_printf("      %i", dfs);
-	printf("\n\n\n");
-	dfs = printf("%d", 0);
-	printf("      %i", dfs);
-	return (0);
-
+	char	c = 'o';
+	char	*str = "Peepo goes shopping";
+	int 	num = -42;
+	unsigned int	unum = 2882343476;
+	
+	ft_printf("--------------------------------------------\n");	
+	ft_printf("Test for %%c\t-->\t%c\n", c);
+	printf("OG for %%c\t-->\t%c\n", c);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%s\t-->\t%s\n", str);
+	printf("OG for %%s\t-->\t%s\n", str);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%i\t-->\t%i\n", num);
+	printf("OG for %%i\t-->\t%i\n", num);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%d\t-->\t%d\n", num);
+	printf("OG for %%d\t-->\t%d\n", num);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%u\t-->\t%u\n", unum);
+	printf("OG for %%u\t-->\t%u\n", unum);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%X\t-->\t%X\n", unum);
+	printf("OG for %%X\t-->\t%X\n", unum);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%x\t-->\t%x\n", unum);
+	printf("OG for %%x\t-->\t%x\n", unum);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for %%p\t-->\t%p\n", str);
+	printf("OG for %%p\t-->\t%p\n", str);
+	ft_printf("--------------------------------------------\n");
+	ft_printf("Test for all %%\n\n%c\n%s\n%i\n%d\n%u\n%X\n%x\n%p\n", c, str, 
+	num, num, unum, unum, unum, str);
+	ft_printf("--------------------------------------------\n");
 }
 */
