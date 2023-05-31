@@ -6,7 +6,7 @@
 #    By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 17:49:27 by andmart2          #+#    #+#              #
-#    Updated: 2023/05/30 21:26:12 by andmart2         ###   ########.fr        #
+#    Updated: 2023/05/31 19:37:25 by andmart2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS = ft_printf.c \
 		ft_print_char_l.c \
 		ft_print_string_l.c \
 		ft_print_number_l.c \
+		ft_print_unsigned_l.c \
+		ft_print_hexa_l.c \
 
 OBJS = $(SRCS:.c=.o)
 
