@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_pointer_l.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 17:41:13 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/31 20:37:26 by andmart2         ###   ########.fr       */
+/*   Created: 2023/05/31 19:45:45 by andmart2          #+#    #+#             */
+/*   Updated: 2023/05/31 20:45:59 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdlib.h>
+static void print_p()
+{
+}
 
-int		ft_print_char_l(char c, int *len);
-void	ft_print_string_l(char *s, int *len);
-void	ft_print_number_l(int a, int *len);
-void	ft_print_unsigned_l(unsigned int b, int * len);
-void	ft_print_hexa_l(int n, int * len, char c);
-void	ft_print_pointer_l(unsigned long p, int *len);
 
-#endif
+void ft_print_pointer_l(unsigned long p, int *len)
+{
+	char *hex;
+
+	hex = "0123456789abcdef"; 
+
+	ft_print_string_l("0x", len);
+	if (*len != -1)
+	{
+		if( p >= 16 && *len != -1)
+			ft_print_pointer_l( p / 16, len);
+		if( *len != -1 && ft_print_char_l(hex[p %16], len) == -1)
+			*len = -1;
+	}
+}

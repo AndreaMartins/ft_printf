@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/31 19:21:50 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:07:41 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -24,6 +24,8 @@ static void	check_type(char c, va_list *args, int *len)
 		ft_print_unsigned_l(va_arg(*args, unsigned int), len);
 	if (c == 'X' || c == 'x')
 		ft_print_hexa_l(va_arg(*args, int), len, c);
+	if (c == 'p')
+		ft_print_pointer_l(va_arg(*args, unsigned long), len);
 	if ( c == '%')
 		ft_print_char_l('%', len);
 }
