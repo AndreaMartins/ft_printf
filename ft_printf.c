@@ -6,7 +6,7 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:47:25 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/31 20:07:41 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:35:13 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -26,11 +26,11 @@ static void	check_type(char c, va_list *args, int *len)
 		ft_print_hexa_l(va_arg(*args, int), len, c);
 	if (c == 'p')
 		ft_print_pointer_l(va_arg(*args, unsigned long), len);
-	if ( c == '%')
+	if (c == '%')
 		ft_print_char_l('%', len);
 }
 
-int	ft_printf (const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	size_t	i;
@@ -39,7 +39,7 @@ int	ft_printf (const char *str, ...)
 	i = 0;
 	len = 0;
 	va_start(args, str);
-	while(str[i] && len != -1 )
+	while (str[i] && len != -1)
 	{
 		if (str[i] == '%')
 		{
@@ -53,32 +53,12 @@ int	ft_printf (const char *str, ...)
 			i++;
 		}
 		if (len == -1)
-			return(-1);
+			return (-1);
 	}
 	va_end(args);
-	return(len);
+	return (len);
 }
-
-/*int	main()
-{	
-	ft_printf("%c\n",'m');
-	printf("%c",'m');
-}
-*/
-/* 	
-Test for 
-c (char)
-s (string)
-i (integer)
-d (decimal)
-u (unsigned)
-X (Hexadecimal CAPS)
-x (hexadecimal lowerc)
-p (pointer)
-% (% sign)
-
-#include <stdio.h>
-
+/*
 int main()
 {
 	char	c = 'o';

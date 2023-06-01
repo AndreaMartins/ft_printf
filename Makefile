@@ -6,7 +6,7 @@
 #    By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 17:49:27 by andmart2          #+#    #+#              #
-#    Updated: 2023/05/31 20:08:48 by andmart2         ###   ########.fr        #
+#    Updated: 2023/06/01 13:30:50 by andmart2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ NAME = libftprintf.a
 AR = ar rc
 RM = rm -f
 HEADER = ft_printf.h
-HEADER_LIBFT = libft/libft.h
 
 SRCS = ft_printf.c \
 		ft_print_char_l.c \

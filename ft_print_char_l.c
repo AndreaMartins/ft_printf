@@ -6,17 +6,17 @@
 /*   By: andmart2 <andmart2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:39:48 by andmart2          #+#    #+#             */
-/*   Updated: 2023/05/31 15:42:39 by andmart2         ###   ########.fr       */
+/*   Updated: 2023/06/01 12:33:14 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_char_l(char c , int *len)
+int	ft_print_char_l(char c, int *len)
 {
-	if (write(1,&c,1) == -1)
+	if (write(1, &c, 1) == -1)
 		*len = -1;
 	else
-		*len +=1;
-	return(*len);   
+		*len += 1;
+	return (*len);
 }
